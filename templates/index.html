@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GPT Watermark Removal</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1 id="main-title">ChatGPT Wasserzeichenentfernung</h1>
+            <div class="language-selector">
+                <button id="lang-de" class="lang-btn active">DE</button>
+                <button id="lang-en" class="lang-btn">EN</button>
+            </div>
+        </header>
+        
+        <main>
+            <div class="input-section">
+                <label for="input-text" id="input-label">KI-Text mit Wasserzeichen einfügen:</label>
+                <textarea id="input-text" placeholder="Füge hier deinen Text ein..."></textarea>
+                <div class="button-group">
+                    <button id="clean-btn" class="primary-btn">Wasserzeichen entfernen</button>
+                    <button id="translate-btn" class="secondary-btn">Übersetzen</button>
+                </div>
+            </div>
+            
+            <div class="output-section">
+                <label for="output-text" id="output-label">Bereinigter Text:</label>
+                <div id="output-text" class="output-container" contenteditable="false"></div>
+                <div class="button-group">
+                    <button id="copy-btn" class="primary-btn">Kopieren</button>
+                    <div id="copy-notification" class="notification hidden">Kopiert!</div>
+                </div>
+            </div>
+        </main>
+        
+        <footer>
+            <p id="footer-text">Diese App entfernt unsichtbare Wasserzeichen aus KI-generierten Texten.</p>
+            <p id="translation-note" class="note">Hinweis: Für die Übersetzungsfunktion wird ein API-Key benötigt.</p>
+        </footer>
+    </div>
+    
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
