@@ -8,6 +8,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const copyNotification = document.getElementById('copy-notification');
     const langDe = document.getElementById('lang-de');
     const langEn = document.getElementById('lang-en');
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeLabel = document.getElementById('theme-label');
     
     // Status-Variablen
     let detectedWatermarks = {};
@@ -242,12 +244,34 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 2000);
     }
     
+    // Theme-Wechsel-Funktionalität
+    function toggleTheme() {
+        if (themeToggle.checked) {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            localStorage.setItem('theme', 'dark');
+            themeLabel.textContent = '☀️';
+        } else {
+            document.documentElement.setAttribute('data-theme', 'light');
+            localStorage.setItem('theme', 'light');
+            themeLabel.textContent = '🌙';
+        }
+    }
+    
+    // Gespeichertes Theme beim Laden anwenden
+    const currentTheme = localStorage.getItem('theme') || 'light';
+    if (currentTheme === 'dark') {
+        themeToggle.checked = true;
+        document.documentElement.setAttribute('data-theme', 'dark');
+        themeLabel.textContent = '☀️';
+    }
+    
     // Event-Listener
     cleanBtn.addEventListener('click', cleanText);
     translateBtn.addEventListener('click', translateText);
     copyBtn.addEventListener('click', copyToClipboard);
     langDe.addEventListener('click', () => changeLanguage('de'));
     langEn.addEventListener('click', () => changeLanguage('en'));
+    themeToggle.addEventListener('change', toggleTheme);
     
     // Keine automatische Bereinigung bei Eingabe mehr, da wir jetzt einen zweistufigen Prozess haben
 });
